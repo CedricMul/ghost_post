@@ -1,0 +1,31 @@
+<a href="/"><button>Home</button></a>
+<a href="/boasts"><button>Boasts</button></a>
+<a href="/roasts"><button>Roasts</button></a>
+<a href="/sort_by_score"><button>Sort by Score</button></a>
+<br>
+<a href="/submission"><button>Create Post</button></a>
+
+{% for p in posts %}
+    <ul>
+        <li>{{ p.content }}</li>
+        <li>
+            {% if p.is_boast %}
+            <b>Boast</b>
+            {% else %}
+            <b>Roast</b>
+            {% endif %}
+        </li>
+        <li>
+            Upvotes: {{ p.upvotes }}
+            Downvotes: {{ p.downvotes }}
+            Total votes: {{ p.total_votes }}
+        </li>
+        <li>
+            {{ p.datetime }}
+        </li>
+        <li>
+            <a href="/upvote/{{ p.id }}"><button>Upvote</button></a>
+            <a href='/downvote/{{ p.id }}'><button>Downvote</button></a>
+        </li>
+    </ul>
+{% endfor %}
